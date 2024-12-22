@@ -1,0 +1,66 @@
+// forms.scss
+@use 'colors' as *;
+
+
+.submit-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    align-items: center; /* Ensures items are vertically centered */
+    flex-wrap: wrap; /* Allows wrapping of items if the screen size is small */
+}
+
+.radio-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radio-container label {
+    margin: 0;
+}
+
+
+input:not([type="submit"]), select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $table-border-color;
+    border-radius: 8px;
+    background-color: #fff;
+    color: $body-text-color;
+    font-size: 1em;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+select {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: $pastel-purple; // or any of your pastel colors
+}
+
+
+// errors
+
+.error-message {
+    color: $pastel-red; // You can use your pastel red or another contrasting color
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none; // Initially hide the error messages
+}
+
+input:invalid,
+select:invalid {
+    border-color: $pastel-red; // Change border to red if invalid
+}
+
+input:invalid+.error-message,
+select:invalid+.error-message {
+    display: block; // Show error message when input is invalid
+}

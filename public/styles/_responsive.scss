@@ -1,0 +1,28 @@
+// _responsive.scss
+@media screen and (max-width: 768px) {
+  table {
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    font-size: 0.9em;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-container a {
+    width: 100%;
+    /* Makes buttons take full width on small screens */
+    margin-right: 0;
+    /* Removes extra space between buttons */
+  }
+
+  .button-primary {
+    margin-bottom: 10px;
+  }
+}

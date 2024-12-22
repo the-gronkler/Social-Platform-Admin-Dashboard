@@ -1,0 +1,66 @@
+// _general.scss
+@use 'colors' as *;
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: $background-color;
+  color: $body-text-color;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  color: $header-text-color;
+  margin-top: 20px;
+  font-size: 2em;
+  letter-spacing: 0.05em;
+}
+
+
+/* Make section titles stand out more */
+h1, h2, h3 {
+  font-size: 2.5em;  /* Larger font size for a more prominent look */
+  // font-weight: bold;  /* Bold to make it heavy */
+  color: $header-text-color;;  /* Darker color for contrast */
+  letter-spacing: 0.1em;  /* Slightly wider letter spacing for a gothic feel */
+  margin-bottom: 20px;
+  font-family: 'Impact', sans-serif;
+}
+
+
+
+
+.header-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Space between title and buttons */
+  align-items: center;
+  flex-wrap: wrap; /* Allows wrapping of items if the screen size is small */
+}
+
+.header-container h1 {
+  margin: 0;
+  flex-grow: 1; /* Ensures the heading takes up remaining space */
+  text-align: left; /* Align the heading to the left */
+}
+
+.header-container a, .header-container button {
+  margin: 10px 0; /* Adds margin to buttons */
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+/* Spacing between buttons */
+.header-container a:not(:last-child), .header-container button:not(:last-child) {
+  margin-right: 15px;
+}
+
+
