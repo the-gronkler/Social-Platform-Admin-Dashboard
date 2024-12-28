@@ -21,7 +21,7 @@ class ServerFactory extends Factory
         return [
             // discord server name with several words
             'name' => ucfirst($this->faker->unique()->word()) . ' ' . ucfirst($this->faker->word()) . ' ' . ucfirst($this->faker->word()),
-            'maxCapacity' => $this->faker->randomNumber(2),
+            'capacity' => $this->faker->randomNumber(2),
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,
         ];

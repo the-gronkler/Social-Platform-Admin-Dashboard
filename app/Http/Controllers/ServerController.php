@@ -26,12 +26,12 @@ class ServerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:250',
-            'maxcapacity' => 'required|integer|min:1',
+            'capacity' => 'required|integer|min:1',
         ]);
 
         Server::create([
             'name' => $request->name,
-            'maxcapacity' => $request->maxcapacity,
+            'capacity' => $request->capacity,
         ]);
 
         return redirect()->route('servers.index');
@@ -53,20 +53,26 @@ class ServerController extends Controller
     }
 
     // Update a specific servers
-    public function update(Request $request, $id)
+    public function update(Request $request, Server $server)
     {
+        // Validate the inputs
         $request->validate([
-            'name' => 'required|max:250',
-            'maxcapacity' => 'required|integer|min:1',
+            'name' => 'required|string|max:255',
+            'capacity' => [
+                'required',
+                'integer',
+                'min:1',
+                'min:' . $server->users()->count(),
+            ],
         ]);
 
-        $server = Server::findOrFail($id);
+        // Update the server
         $server->update([
             'name' => $request->name,
-            'maxcapacity' => $request->maxcapacity,
+            'capacity' => $request->capacity,
         ]);
 
-        return redirect()->route('servers.show', $server->id);
+        return redirect()->route('servers.show', $server->id)->with('success', 'Server updated successfully');
     }
 
     // Delete a specific servers

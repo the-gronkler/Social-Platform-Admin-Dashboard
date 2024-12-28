@@ -4,6 +4,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\UsersServerController;
 
+Route::get('/', function () {
+    return redirect()->route('servers.index');
+});
+
 Route::resource('users', UserController::class);
 Route::resource('servers', ServerController::class);
 

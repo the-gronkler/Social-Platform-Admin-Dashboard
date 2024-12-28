@@ -16,7 +16,7 @@ class UsersServerSeeder extends Seeder
 
         // Iterate through servers and associate users
         foreach ($servers as $server) {
-            $remainingCapacity = $server->maxCapacity - $server->users()->count();
+            $remainingCapacity = $server->capacity - $server->users()->count();
             if ($remainingCapacity > 0) {
                 // Randomly assign between 5 and [20/remaining capacity] users to each server
                 foreach ($users->random(min(rand(5, 20), $remainingCapacity)) as $user) {

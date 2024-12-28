@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('maxCapacity');
+            $table->integer('capacity');
             $table->timestamps();
         });
     }

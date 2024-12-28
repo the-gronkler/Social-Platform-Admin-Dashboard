@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $server->id }}</td>
                 <td>{{ $server->name }}</td>
-                <td>{{ $server->users_count }} / {{ $server->maxCapacity }}</td>
+                <td>{{ $server->users_count }} / {{ $server->capacity }}</td>
                 <td><a href="{{ route('servers.show', $server->id) }}" class="button-primary">View Details</a></td>
             </tr>
         @endforeach

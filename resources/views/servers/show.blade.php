@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <th>Capacity</th>
-            <td>{{ $server->users->count() }} / {{ $server->maxCapacity }} members</td>
+            <td>{{ $server->users->count() }} / {{ $server->capacity }} members</td>
         </tr>
     </table>
 
