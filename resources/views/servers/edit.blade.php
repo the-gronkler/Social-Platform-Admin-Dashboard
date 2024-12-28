@@ -6,7 +6,7 @@
     <form action="{{ route('servers.destroy', $server->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="button-delete">Delete</button>
+        <a type="submit" class="button-delete">Delete</a>
     </form>
     <a href="{{ route('servers.show', $server->id) }}" class="button-primary">Back</a>
 @endsection
