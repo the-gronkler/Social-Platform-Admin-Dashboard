@@ -39,17 +39,17 @@ button {
 }
 
 .button-primary,
-button.button-edit {
+button.button-primary {
   @include button-styles($pastel-purple, $darker-purple);
 }
 
 .button-danger,
-button.button-edit {
+button.button-danger {
   @include button-styles($pastel-red, $darker-red);
 }
 
 .button-success,
-button.button-edit {
+button.button-success {
   @include button-styles($pastel-green, $darker-green);
 }
 

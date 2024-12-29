@@ -6,7 +6,7 @@
     <form action="{{ route('servers.destroy', $server->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <a type="submit" class="button-delete">Delete</a>
+        <button type="submit" class="button-delete">Delete</button>
     </form>
     <a href="{{ route('servers.show', $server->id) }}" class="button-primary">Back</a>
 @endsection
@@ -17,13 +17,36 @@
         @method('PUT')
 
         @php
+            // Calculate the minimum value for capacity
+            $minCapacity = max(1, $server->users()->count());
+
             $fields = [
-                ['label' => 'ID', 'name' => 'id', 'type' => 'text', 'readonly' => true, 'value' => $server->id],
-                ['label' => 'Name', 'name' => 'name', 'type' => 'text', 'readonly' => false, 'value' => old('name', $server->name)],
-                ['label' => 'Capacity', 'name' => 'capacity', 'type' => 'number', 'readonly' => false, 'value' => old('capacity', $server->capacity), 'attributes' => ['min' => 1]],
+                [
+                    'label' => 'ID',
+                    'name' => 'id', // Explicitly provide name, id, and type
+                    'id' => 'id',
+                    'type' => 'text',
+                    'attributes' => 'readonly',
+                    'value' => $server->id
+                ],
+                [
+                    'label' => 'Name',
+                    'name' => 'name',
+                    'id' => 'name',
+                    'type' => 'text',
+                    'attributes' => 'required',
+                    'value' => old('name', $server->name)
+                ],
+                [
+                    'label' => 'Capacity',
+                    'name' => 'capacity',
+                    'id' => 'capacity',
+                    'type' => 'number',
+                    'attributes' => 'required min="' . $minCapacity . '"',
+                    'value' => old('capacity', $server->capacity)
+                ],
             ];
         @endphp
-
 
         <x-editable-table :fields="$fields" />
 

@@ -3,9 +3,13 @@
         <tr>
             <th>{{ $field['label'] }}</th>
             <td>
-                <input type="{{ $field['type'] }}" id="{{ $field['name'] }}" name="{{ $field['name'] }}"
-                       value="{{ $field['value'] }}" @if($field['readonly']) readonly @endif
-                       @foreach ($field['attributes'] ?? [] as $attribute => $value) {{ $attribute }}="{{ $value }}" @endforeach>
+                <input
+                    type="{{ $field['type'] }}"
+                    id="{{ $field['id'] }}"
+                    name="{{ $field['name'] }}"
+                    {!! $field['attributes'] !!}
+                    value="{{ $field['value'] }}"
+                >
 
                 @error($field['name'])
                 <span class="error-message">{{ $message }}</span>
