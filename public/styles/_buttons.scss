@@ -4,18 +4,9 @@
 
 button {
   all: unset; // Resets all styles
-  display: inline-block;  // Ensures buttons are inline-block like anchor tags
-  padding: 10px 20px;  // Match padding with anchor tags
-  background-color: transparent;  // Remove default background
-  color: inherit;  // Use inherited text color (you can set this to white or your preferred color)
   font-size: 1em;  // Match font size
-  font-weight: bold;
-  text-align: center;
   text-decoration: none;  // Remove underline by default
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Optional for button shadow
   cursor: pointer;  // Make the button act like a button (with a pointer cursor)
-  transition: background-color 0.3s;
   vertical-align: middle;  // Align the button vertically with other inline elements (like anchor tags)
 }
 
