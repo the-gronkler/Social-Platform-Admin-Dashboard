@@ -3,80 +3,97 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Display a list of all users
+    /**
+     * Display a listing of the users.
+     */
     public function index()
     {
-        $users = User::all();
+        $users = User::withCount('servers')->get();
         return view('users.index', compact('users'));
     }
 
-    // Show the form to create a new user
+    /**
+     * Show the form for creating a new user.
+     */
     public function create()
     {
         return view('users.create');
     }
 
-    // Store a new user
-    public function store(Request $request)
+    /**
+     * Store a newly created user in storage.
+     */
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'role' => 'required',
-        ]);
-
         User::create([
+            'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role' => $request->role,
-            'created_at' => now(),
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 
-    // Show details of a specific user along with associated servers
-    public function show($id)
+    /**
+     * Display the specified user.
+     */
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
         $servers = $user->servers; // Many-to-many relationship with servers
         return view('users.show', compact('user', 'servers'));
     }
 
-    // Show the form to edit a user
-    public function edit($id)
+    /**
+     * Show the form for editing the specified user.
+     */
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
         return view('users.edit', compact('user'));
     }
 
-    // Update a specific user
-    public function update(Request $request, $id)
+    /**
+     * Update the specified user in storage.
+     */
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $request->validate([
-            'email' => 'required|email|unique:users,email,' . $id,
-            'role' => 'required',
-        ]);
 
-        $user = User::findOrFail($id);
-        $user->update([
+        $userData = [
+            'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
-        ]);
+            'role' => $request->role
+        ];
 
-        return redirect()->route('users.show', $user->id);
+
+        if($request->password)
+        {
+            $userData['password'] = Hash::make($request->password);
+        }
+
+
+
+        $user->update($userData);
+
+
+        return redirect()
+            ->route('users.show', $user->id)
+            ->with('success', 'User updated successfully');
     }
 
-    // Delete a specific user
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
 
-        return redirect()->route('users.index');
+    /**
+     * Remove the specified user from storage.
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
 }

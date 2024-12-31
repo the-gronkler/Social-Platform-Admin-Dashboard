@@ -43,7 +43,7 @@ class User extends Authenticatable
     {
         return $this
             ->belongsToMany(Server::class, 'users_server')
-            ->withPivot('isAdmin', 'created_at');
+            ->withPivot('is_admin', 'created_at');
     }
 }
 
