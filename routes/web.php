@@ -19,4 +19,5 @@ Route::controller(UsersServerController::class)->group(function () {
     Route::get('users_server/{users_server}', 'show')->name('users_server.show');
     Route::get('users_server/{users_server}/edit', 'edit')->name('users_server.edit');
     Route::put('users_server/{users_server}', 'update')->name('users_server.update');
+    Route::delete('users_server/{users_server}', 'destroy')->name('users_server.destroy');
 });

@@ -55,6 +55,13 @@ select:focus {
     display: none; // Initially hide the error messages
 }
 
+.error-summary {
+    color: $pastel-red; // You can use your pastel red or another contrasting color
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+
 input:invalid,
 select:invalid {
     border-color: $pastel-red; // Change border to red if invalid

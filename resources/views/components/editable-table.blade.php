@@ -16,5 +16,16 @@
                 @enderror
             </td>
         </tr>
+
     @endforeach
 </table>
+
+@if ($errors->any())
+    <div class="error-summary">
+        <ul class="error-summary">
+            @foreach ($errors->all() as $error)
+                <li class="error-summary">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

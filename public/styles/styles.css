@@ -237,6 +237,12 @@ select:focus {
   display: none;
 }
 
+.error-summary {
+  color: #FF6F61;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
 input:invalid,
 select:invalid {
   border-color: #FF6F61;
