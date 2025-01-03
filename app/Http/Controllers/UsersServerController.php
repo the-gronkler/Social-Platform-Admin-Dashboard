@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Server;
 use App\Models\UsersServer;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsersServerRequest;
 use App\Http\Requests\UpdateUsersServerRequest;
 
@@ -27,8 +26,25 @@ class UsersServerController extends Controller
      */
     public function createForServer(Server $server)
     {
-        $users = User::all(); // List of users to choose from
-        return view('users_server.create-for-server', compact('server', 'users'));
+        // select users who are not members for the server
+        $users = User::whereDoesntHave('servers',
+            fn($query) => $query->where('server_id', $server->id))
+        ->get();
+
+//        dd($users);
+
+        // if there are no users who are not members for the server, add error message to users_server.create-for-server
+        $errors = [];
+        if ($users->count() === 0) {
+            $errors['no_users'] = 'There are no existing users you can add to this server.';
+        }
+        // check capacity
+        if ($server->users->count() >= $server->capacity) {
+            $errors['capacity'] = 'The server is full. Cant add members';
+        }
+
+        return view('users_server.create-for-server', compact('server', 'users'))
+            ->withErrors($errors);
     }
 
 
@@ -37,7 +53,15 @@ class UsersServerController extends Controller
      */
     public function createForUser(User $user)
     {
-        $servers = Server::all(); // List of servers to choose from
+        // select servers where the user is not a member
+        $servers = Server::whereDoesntHave('users',
+            fn($query) => $query->where('user_id', $user->id)
+        )
+        ->where('capacity', '>', $user->servers->count())
+        ->get();
+
+
+
         return view('users_server.create-for-user', compact('user', 'servers'));
     }
 
@@ -47,6 +71,16 @@ class UsersServerController extends Controller
      */
     public function store(StoreUsersServerRequest $request)
     {
+        // check if an associeatoon with $request->server_id and $request->user_id already exists
+        if (UsersServer::where('server_id', $request->server_id)
+            ->where('user_id', $request->user_id)
+            ->exists()
+        ) {
+            return redirect()->back()->withErrors([
+                'server_id' => 'This user is already a member of this server.',
+            ]);
+        }
+
         $server = Server::findOrFail($request->server_id);
         $server->users()->attach($request->user_id, [
             'is_admin' => $request->is_admin,
@@ -54,7 +88,7 @@ class UsersServerController extends Controller
         ]);
 
 
-        return redirect()->route('servers.show', $server->id);
+        return redirect()->route('users.show', $request->user_id);
     }
 
     /**

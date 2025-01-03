@@ -34,6 +34,7 @@
     <table>
         <thead>
         <tr>
+            <th>ID</th>
             <th>Email</th>
             <th>Is Admin</th>
             <th>Date Joined</th>
@@ -43,6 +44,7 @@
         <tbody>
         @foreach ($server->users as $user)
             <tr>
+                <td>{{ $user->id }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->pivot->is_admin ? 'Yes' : 'No' }}</td>
                 <td>{{ $user->pivot->created_at->format('d.m.Y') }}</td>

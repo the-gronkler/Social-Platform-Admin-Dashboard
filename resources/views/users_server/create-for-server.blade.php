@@ -1,28 +1,27 @@
 @extends('layouts.app')
-@section('title', 'Add User to Server')
-@section('header-title', 'Add User ' . $user->email .' to Server')
-
+@section('title', 'Add Member to Server')
+@section('header-title', 'Add User to Server: ' . $server->name)
 
 @section('header-buttons')
-    <a href="{{ route('users.show', $user->id) }}" class="button-primary">Back</a>
+    <a href="{{ route('servers.show', $server->id) }}" class="button-primary">Back</a>
 @endsection
 
 @section('content')
     <form action="{{ route('users_server.store') }}" method="POST">
         @csrf
-        <input type="hidden" name="user_id" value="{{ $user->id }}">
+        <input type="hidden" name="server_id" value="{{ $server->id }}">
         <table>
             <tr>
-                <th>User</th>
-                <td>{{ '(' . $user->id . ') ' .  $user->email }}</td>
-            </tr>
-
                 <th>Server</th>
+                <td>{{ '(' . $server->id . ') ' .  $server->name }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
                 <td>
-                    <select id="server_id" name="server_id" required>
-                        @foreach($servers as $server)
-                            <option value="{{ $server->id }}">
-                                {{ '(' . $server->id . ') ' .  $server->name }}
+                    <select id="user_id" name="user_id" required>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">
+                                {{ '(' . $user->id . ') ' .  $user->email }}
                             </option>
                         @endforeach
                     </select>
@@ -46,7 +45,6 @@
                 </ul>
             </div>
         @endif
-
 
         <div class="submit-container">
             <button type="submit" class="button-success">Save Changes</button>

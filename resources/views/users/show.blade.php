@@ -35,6 +35,8 @@
     <table>
         <thead>
         <tr>
+
+            <th>ID</th>
             <th>Server Name</th>
             <th>Is Admin</th>
             <th>Actions</th>
@@ -43,6 +45,7 @@
         <tbody>
         @foreach ($user->servers as $server)
             <tr>
+                <td>{{ $server->id }}</td>
                 <td>{{ $server->name }}</td>
                 <td>{{ $server->pivot->is_admin ? 'Yes' : 'No' }}</td>
                 <td>
