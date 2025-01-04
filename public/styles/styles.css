@@ -25,9 +25,9 @@ h1, h2, h3 {
 }
 
 .permanent-header {
-  background-color: #25437e;
   color: #555555;
   padding: 10px 0;
+  background: #25437e linear-gradient(to bottom, #25437e 85%, #e0f2f1 100%);
 }
 
 h1.website-title {
@@ -336,6 +336,43 @@ select:invalid + .error-message {
   .button-primary {
     margin-bottom: 10px;
   }
+}
+/* Pagination Links */
+.pagination-links {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.pagination-links ul {
+  padding-left: 0;
+  display: inline-flex;
+  list-style: none;
+}
+
+.pagination-links li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination-links li a,
+.pagination-links li span {
+  border: 1px solid #ddd;
+  background-color: ivory;
+  color: #4a4a4a;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.pagination-links li.active span {
+  background-color: #ce93d8;
+  color: white;
+  border-color: #ce93d8;
+}
+
+.pagination-links li a:hover {
+  background-color: #e1f5fe;
 }
 
 /*# sourceMappingURL=styles.css.map */

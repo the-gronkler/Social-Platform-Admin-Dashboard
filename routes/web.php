@@ -11,6 +11,7 @@ Route::get('/', function () {
     return redirect()->route('servers.index');
 });
 
+//Auth routes
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'showLoginForm')->name('login.show');
     Route::post('/login', 'login')->name('login');
@@ -24,9 +25,11 @@ Route::controller(RegisterController::class)->group(function () {
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
-Route::resource('users', UserController::class);
-Route::resource('servers', ServerController::class);
-
+// Resource routes
+Route::resources([
+    'users' => UserController::class,
+    'servers' => ServerController::class
+]);
 
 Route::controller(UsersServerController::class)->group(function () {
     Route::get('users_server/create-for-server/{server}', 'createForServer')->name('users_server.create-for-server');

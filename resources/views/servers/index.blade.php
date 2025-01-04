@@ -29,4 +29,5 @@
         @endforeach
         </tbody>
     </table>
+    {{ $servers->links() }}
 @endsection

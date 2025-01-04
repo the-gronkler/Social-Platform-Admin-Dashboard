@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class ServerController extends Controller
 {
-    // Display a list of all servers
     public function index()
     {
-        $servers = Server::withCount('users')->get();
-//        dd($servers);
+        $servers = Server::withCount('users')
+            ->paginate(config('constants.PAGINATION_LIST_LENGTH'));
+
         return view('servers.index', compact('servers'));
     }
 

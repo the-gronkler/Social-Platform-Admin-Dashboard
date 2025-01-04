@@ -33,9 +33,9 @@ h1, h2, h3 {
 
 
 .permanent-header {
-    background-color: $header-background-color;
     color: $header-text-color;
     padding: 10px 0;
+    background: $header-background-color linear-gradient(to bottom, $header-background-color 85%, $background-color 100%);
 }
 
 h1.website-title {
