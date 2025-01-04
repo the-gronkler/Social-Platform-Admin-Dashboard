@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\UsersServerController;
@@ -7,6 +10,19 @@ use App\Http\Controllers\UsersServerController;
 Route::get('/', function () {
     return redirect()->route('servers.index');
 });
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login.show');
+    Route::post('/login', 'login')->name('login');
+});
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'showRegistrationForm')->name('register.show');
+    Route::post('/register', 'register')->name('register');
+});
+
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
 
 Route::resource('users', UserController::class);
 Route::resource('servers', ServerController::class);

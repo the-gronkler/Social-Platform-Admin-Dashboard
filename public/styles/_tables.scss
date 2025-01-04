@@ -10,6 +10,9 @@ table {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   overflow: hidden;
+  table-layout: auto;
+    min-width: fit-content;
+    min-height: fit-content;
 }
 
 th, td {
@@ -25,12 +28,14 @@ th {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.05em;
+  padding: 5px 10px;
+    min-width: fit-content;
 }
 
 td {
   background-color: $table-row-color;
   color: $body-text-color;
-  font-size: 1.1em; 
+  font-size: 1.1em;
 }
 
 td a:hover {

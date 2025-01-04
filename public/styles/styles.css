@@ -24,6 +24,16 @@ h1, h2, h3 {
   font-family: "Impact", sans-serif;
 }
 
+.permanent-header {
+  background-color: #25437e;
+  color: #555555;
+  padding: 10px 0;
+}
+
+h1.website-title {
+  color: #ffccbc;
+}
+
 .header-container {
   width: 80%;
   margin: 0 auto;
@@ -63,6 +73,9 @@ table {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   overflow: hidden;
+  table-layout: auto;
+  min-width: fit-content;
+  min-height: fit-content;
 }
 
 th, td {
@@ -78,6 +91,8 @@ th {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.05em;
+  padding: 5px 10px;
+  min-width: fit-content;
 }
 
 td {
@@ -110,6 +125,8 @@ button {
   text-decoration: none;
   cursor: pointer;
   vertical-align: middle;
+  position: relative;
+  top: 5px;
 }
 
 .button-primary,
@@ -188,6 +205,50 @@ button.button-edit:hover {
   background-color: #e1c14a;
 }
 
+.form-item {
+  width: 90%;
+  margin: 10px auto;
+}
+
+.form-item label {
+  font-weight: bold;
+}
+
+.form-item input:not([type=submit]), select {
+  margin-bottom: 10px;
+}
+
+.checkbox-container {
+  display: flex; /* Use flexbox to align label and checkbox */
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Keep label and checkbox on different sides */
+}
+
+.checkbox-container label {
+  white-space: nowrap; /* prevent wrapping label */
+  flex: 1; /* let label take up available space */
+  padding-right: 10px; /* Add some space to the right of the label */
+  text-align: left;
+}
+
+.checkbox-container input[type=checkbox] {
+  flex: 0; /* Let checkbox take up only the space it needs */
+}
+
+form.form-container {
+  width: 60%;
+  margin: 20px auto;
+  background-color: #f1f8e9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .submit-container {
   width: 80%;
   margin: 0 auto;
@@ -212,7 +273,7 @@ input:not([type=submit]), select {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: ivory;
   color: #4a4a4a;
   font-size: 1em;
 }

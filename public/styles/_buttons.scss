@@ -8,6 +8,8 @@ button {
   text-decoration: none;  // Remove underline by default
   cursor: pointer;  // Make the button act like a button (with a pointer cursor)
   vertical-align: middle;  // Align the button vertically with other inline elements (like anchor tags)
+    position: relative;
+    top: 5px;
 }
 
 @mixin button-styles($bg-color, $hover-color) {

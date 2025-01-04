@@ -4,6 +4,7 @@
             <th>{{ $field['label'] }}</th>
             <td>
                 <input
+                    class = "table-input"
                     type="{{ $field['type'] }}"
                     id="{{ $field['id'] }}"
                     name="{{ $field['name'] }}"

@@ -19,6 +19,7 @@ h1 {
 }
 
 
+
 /* Make section titles stand out more */
 h1, h2, h3 {
   font-size: 2.5em;  /* Larger font size for a more prominent look */
@@ -31,6 +32,15 @@ h1, h2, h3 {
 
 
 
+.permanent-header {
+    background-color: $header-background-color;
+    color: $header-text-color;
+    padding: 10px 0;
+}
+
+h1.website-title {
+    color: $table-header-color;
+}
 
 .header-container {
   width: 80%;
