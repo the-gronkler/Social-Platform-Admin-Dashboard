@@ -41,7 +41,8 @@ class ServerController extends Controller
     public function show($id)
     {
         $server = Server::findOrFail($id);
-        $users = $server->users; // Many-to-many relationship with users
+        $users = $server->users()->paginate(config('constants.PAGINATION_LIST_LENGTH'));
+
         return view('servers.show', compact('server', 'users'));
     }
 
