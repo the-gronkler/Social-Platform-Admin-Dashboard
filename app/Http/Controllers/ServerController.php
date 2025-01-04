@@ -73,7 +73,8 @@ class ServerController extends Controller
             'capacity' => $request->capacity,
         ]);
 
-        return redirect()->route('servers.show', $server->id)->with('success', 'Server updated successfully');
+        return redirect()->route('servers.show', $server->id)
+            ->with('success', 'Server updated successfully');
     }
 
     // Delete a specific servers

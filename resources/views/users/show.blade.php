@@ -43,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($user->servers as $server)
+        @foreach ($servers as $server)
             <tr>
                 <td>{{ $server->id }}</td>
                 <td>{{ $server->name }}</td>
@@ -57,4 +57,5 @@
         @endforeach
         </tbody>
     </table>
+    {{ $servers->links() }}
 @endsection

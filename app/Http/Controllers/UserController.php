@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::withCount('servers')->get();
+        $users = User::withCount('servers')
+            ->paginate(config('constants.PAGINATION_LIST_LENGTH'));
         return view('users.index', compact('users'));
     }
 
@@ -45,9 +46,12 @@ class UserController extends Controller
     /**
      * Display the specified user.
      */
-    public function show(User $user)
+    public function show($id)
     {
-        $servers = $user->servers; // Many-to-many relationship with servers
+        $user = User::findOrFail($id);
+        $servers = $user->servers()
+            ->paginate(config('constants.PAGINATION_LIST_LENGTH'));
+
         return view('users.show', compact('user', 'servers'));
     }
 
