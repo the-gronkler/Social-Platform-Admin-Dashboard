@@ -9,7 +9,7 @@ button {
   cursor: pointer;  // Make the button act like a button (with a pointer cursor)
   vertical-align: middle;  // Align the button vertically with other inline elements (like anchor tags)
 
-  // vertically allign buttons to anchor tags (they are normally higher)
+  // vertically allign buttons to anchor tags (they are normally higher for some reason)
     position: relative;
     top: 5px;
 }
@@ -35,6 +35,7 @@ button {
     cursor: not-allowed;
     background-color: $hover-color;  // Apply hover color when disabled
   }
+
 }
 
 .button-primary,
@@ -55,6 +56,27 @@ button.button-success {
 .button-edit,
 button.button-edit {
   @include button-styles($pastel-yellow, $darker-yellow);
+}
+
+//disabled anchor tags
+.button-primary.disabled,
+.button-danger.disabled,
+.button-success.disabled,
+.button-edit.disabled{
+    cursor: not-allowed;
+}
+
+.button-primary.disabled {
+  background-color: $darker-purple;
+}
+.button-edit.disabled {
+    background-color: $darker-yellow;
+}
+.button-danger.disabled {;
+    background-color: $darker-red;
+}
+.button-success.disabled {
+    background-color: $darker-green;
 }
 
 // Tooltip Styles

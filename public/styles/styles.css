@@ -225,6 +225,29 @@ button.button-edit:disabled {
   background-color: #e1c14a;
 }
 
+.button-primary.disabled,
+.button-danger.disabled,
+.button-success.disabled,
+.button-edit.disabled {
+  cursor: not-allowed;
+}
+
+.button-primary.disabled {
+  background-color: #ba68c8;
+}
+
+.button-edit.disabled {
+  background-color: #e1c14a;
+}
+
+.button-danger.disabled {
+  background-color: #E0514A;
+}
+
+.button-success.disabled {
+  background-color: #5CB85C;
+}
+
 .button-tooltip-wrapper {
   position: relative;
   display: inline-block;
