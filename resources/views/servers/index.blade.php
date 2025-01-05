@@ -4,6 +4,13 @@
 @section('header-title', 'Server List')
 
 @section('header-buttons')
+    <x-conditional-button
+        action="create"
+        :model="$server"
+        buttonClass="button-success"
+        tooltip="You need to be logged in permissions to create a server."
+    >Delete</x-conditional-button>
+
     <a href="{{ route('servers.create') }}" class="button-success">New Server</a>
     <a href="{{ route('users.index') }}" class="button-primary">View All Users</a>
 @endsection

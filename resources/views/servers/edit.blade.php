@@ -7,8 +7,6 @@
         @csrf
         @method('DELETE')
 
-
-
         <x-conditional-button
             action="delete"
             :model="$server"

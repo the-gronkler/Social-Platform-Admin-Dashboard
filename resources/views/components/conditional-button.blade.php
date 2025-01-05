@@ -4,16 +4,16 @@
             {{ $slot }}
         </button>
     @else
-        <button type="{{$buttonType}}" class="{{ $buttonClass }} disabled" disabled
-                @if($tooltip)
-                    title="{{ $tooltip }}"
+        <button type="{{$buttonType}}"
+                class="{{ $buttonClass }} disabled"
+                disabled
+            @if($tooltip)
+                title="{{ $tooltip }}"
             @endif
-        >
-            {{ $slot }}
-        </button>
+        >{{ $slot }}</button>
+
         @if($tooltip)
             <span class="tooltip">{{ $tooltip }}</span>
         @endif
-
     @endcan
 </div>
