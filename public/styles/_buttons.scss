@@ -8,6 +8,8 @@ button {
   text-decoration: none;  // Remove underline by default
   cursor: pointer;  // Make the button act like a button (with a pointer cursor)
   vertical-align: middle;  // Align the button vertically with other inline elements (like anchor tags)
+
+  // vertically allign buttons to anchor tags (they are normally higher)
     position: relative;
     top: 5px;
 }
@@ -29,6 +31,10 @@ button {
     background-color: $hover-color;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $hover-color;  // Apply hover color when disabled
+  }
 }
 
 .button-primary,
@@ -51,5 +57,43 @@ button.button-edit {
   @include button-styles($pastel-yellow, $darker-yellow);
 }
 
+// Tooltip Styles
+.button-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
 
+.tooltip {
+    visibility: hidden;
+    background-color: $body-text-color;
+    color: white;  // Text color
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    position: absolute;
+    top: 130%;  // place below the button
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+    /* Tooltip arrow */
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 100%;  /* Arrow at the top of the tooltip */
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent $body-text-color transparent;  // Use pastel purple for the arrow
+    }
+}
+
+.button-tooltip-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

@@ -6,9 +6,18 @@
     <form action="{{ route('servers.destroy', $server->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="button-danger">Delete</button>
+
+
+
+        <x-conditional-button
+            action="delete"
+            :model="$server"
+            buttonClass="button-danger"
+            tooltip="You need admin permissions to delete this server."
+        >Delete</x-conditional-button>
 
         <a href="{{ route('servers.show', $server->id) }}" class="button-primary">Back</a>
+
     </form>
 
 @endsection

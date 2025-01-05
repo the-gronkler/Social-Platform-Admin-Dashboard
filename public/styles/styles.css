@@ -147,6 +147,11 @@ button.button-primary {
 button.button-primary:hover {
   background-color: #ba68c8;
 }
+.button-primary:disabled,
+button.button-primary:disabled {
+  cursor: not-allowed;
+  background-color: #ba68c8;
+}
 
 .button-danger,
 button.button-danger {
@@ -164,6 +169,11 @@ button.button-danger {
 }
 .button-danger:hover,
 button.button-danger:hover {
+  background-color: #E0514A;
+}
+.button-danger:disabled,
+button.button-danger:disabled {
+  cursor: not-allowed;
   background-color: #E0514A;
 }
 
@@ -185,6 +195,11 @@ button.button-success {
 button.button-success:hover {
   background-color: #5CB85C;
 }
+.button-success:disabled,
+button.button-success:disabled {
+  cursor: not-allowed;
+  background-color: #5CB85C;
+}
 
 .button-edit,
 button.button-edit {
@@ -203,6 +218,50 @@ button.button-edit {
 .button-edit:hover,
 button.button-edit:hover {
   background-color: #e1c14a;
+}
+.button-edit:disabled,
+button.button-edit:disabled {
+  cursor: not-allowed;
+  background-color: #e1c14a;
+}
+
+.button-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #4a4a4a;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.85em;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Tooltip arrow */
+}
+.tooltip:after {
+  content: "";
+  position: absolute;
+  bottom: 100%; /* Arrow at the top of the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #4a4a4a transparent;
+}
+
+.button-tooltip-wrapper:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .form-item {
