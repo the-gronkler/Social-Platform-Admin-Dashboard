@@ -7,7 +7,14 @@
 
 @section('header-buttons')
     <a href="{{ route('servers.index') }}" class="button-primary">View All Servers</a>
-    <a href="{{ route('servers.edit', $server->id) }}" class="button-edit">Edit</a>
+
+    <x-conditional-link
+        action="update"
+        :model="$server"
+        cssClass="button-edit"
+        href="{{ route('servers.edit', $server->id) }}"
+        tooltip="You need admin permissions to edit this server."
+    >Edit</x-conditional-link>
 @endsection
 
 @section('content')

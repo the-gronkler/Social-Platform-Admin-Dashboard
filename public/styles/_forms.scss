@@ -1,9 +1,6 @@
 // forms.scss
 @use 'colors' as *;
 
-
-
-
 .form-item {
     width: 90%;
     margin: 10px auto;
@@ -85,7 +82,6 @@ form.form-container {
     margin: 0;
 }
 
-
 input:not([type="submit"]), select {
     width: 100%;
     padding: 10px;
@@ -111,7 +107,6 @@ select:focus {
 
 
 // errors
-
 .error-message {
     color: $pastel-red; // You can use your pastel red or another contrasting color
     font-size: 0.9em;
@@ -124,8 +119,6 @@ select:focus {
     font-size: 0.9em;
     margin-top: 5px;
 }
-
-
 
 input:invalid,
 select:invalid {

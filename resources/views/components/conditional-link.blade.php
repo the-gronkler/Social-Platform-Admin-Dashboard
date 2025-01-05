@@ -1,19 +1,17 @@
 <div class="button-tooltip-wrapper">
     @can($action, $model)
-        <a href="{{ $href }}" class="{{ $linkClass }}">
+        <a href="{{ $href }}" class="{{ $cssClass }}">
             {{ $slot }}
         </a>
-        <span> allowd</span>
 
     @else
-        <a href="#" class="{{ $linkClass }} disabled"
+        <a href="#" class="{{ $cssClass }} disabled"
            @if($tooltip)
                title="{{ $tooltip }}"
            @endif
            onclick="event.preventDefault();"
         >{{ $slot }}</a>
 
-        <span>not allowd</span>
         @if($tooltip)
             <span class="tooltip">{{ $tooltip }}</span>
         @endif

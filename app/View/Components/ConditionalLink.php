@@ -10,7 +10,7 @@ class ConditionalLink extends Component
 {
     public string $action;
     public $model;
-    public string $linkClass;
+    public string $cssClass;
     public ?string $tooltip = null;
     public string $href;
 
@@ -20,14 +20,14 @@ class ConditionalLink extends Component
     public function __construct(
         string $action,
                $model,
-        string $linkClass = 'button-primary',
+        string $cssClass = 'button-primary',
         ?string $tooltip = null,
         string $href = '#'
     )
     {
         $this->action = $action;
         $this->model = $model;
-        $this->linkClass = $linkClass;
+        $this->cssClass = $cssClass;
         $this->tooltip = $tooltip;
         $this->href = $href;
     }

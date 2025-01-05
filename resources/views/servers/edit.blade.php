@@ -10,7 +10,7 @@
         <x-conditional-button
             action="delete"
             :model="$server"
-            buttonClass="button-danger"
+            cssClass="button-danger"
             tooltip="You need admin permissions to delete this server."
         >Delete</x-conditional-button>
 
@@ -60,7 +60,15 @@
         <x-editable-table :fields="$fields" />
 
         <div class="submit-container">
-            <button type="submit" class="button-success">Save Changes</button>
+
+            <x-conditional-button
+                action="update"
+                :model="$server"
+                cssClass="button-success"
+                tooltip="You need admin permissions to edit this server."
+            >Save Changes</x-conditional-button>
+
+{{--            <button type="submit" class="button-success">Save Changes</button>--}}
         </div>
     </form>
 @endsection

@@ -8,7 +8,7 @@
     <x-conditional-link
         action="create"
         :model="App\Models\Server::class"
-        linkClass="button-success"
+        cssClass="button-success"
         href="{{ route('servers.create') }}"
         tooltip="You need to be logged in to create a server."
     >New Server</x-conditional-link>

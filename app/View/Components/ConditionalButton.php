@@ -9,7 +9,7 @@ class ConditionalButton extends Component
 {
     public string $action;
     public $model;
-    public string $buttonClass;
+    public string $cssClass;
     public ?string $tooltip = null;
     public string $buttonType;
 
@@ -20,7 +20,7 @@ class ConditionalButton extends Component
     public function __construct(
         string $action,
                $model,
-        string $buttonClass = 'button-primary',
+        string $cssClass = 'button-primary',
         ?string $tooltip = null,
         string $buttonType = 'submit',
         ?string $modelClass = null,
@@ -28,7 +28,7 @@ class ConditionalButton extends Component
     {
         $this->action = $action;
         $this->model = $model;
-        $this->buttonClass = $buttonClass;
+        $this->cssClass = $cssClass;
         $this->tooltip = $tooltip;
         $this->buttonType = $buttonType;
     }

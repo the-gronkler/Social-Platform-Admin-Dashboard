@@ -54,7 +54,7 @@ class ServerPolicy
     {
         return $user != null; // Any logged in user can create a server
     }
-    
+
     /**
      * Return true if the user is a website-wide admin or a server admin.
      */

@@ -1,12 +1,12 @@
 <div class="button-tooltip-wrapper">
     @can($action, $model)
-        <button type="{{$buttonType}}" class="{{ $buttonClass }}">
+        <button type="{{$buttonType}}" class="{{ $cssClass }}">
             {{ $slot }}
         </button>
 
     @else
         <button type="{{$buttonType}}"
-                class="{{ $buttonClass }} disabled"
+                class="{{ $cssClass }} disabled"
                 disabled
                 @if($tooltip)
                     title="{{ $tooltip }}"

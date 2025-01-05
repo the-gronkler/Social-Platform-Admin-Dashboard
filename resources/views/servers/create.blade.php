@@ -37,7 +37,12 @@
         <x-editable-table :fields="$fields" />
 
         <div class="submit-container">
-            <button type="submit" class="button-success">Create Server</button>
+            <x-conditional-button
+                action="create"
+                :model="App\Models\Server::class"
+                cssClass="button-success"
+                tooltip="You to log in to create a server."
+            >Create Server</x-conditional-button>
         </div>
     </form>
 @endsection
