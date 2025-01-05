@@ -3,13 +3,14 @@
         <button type="{{$buttonType}}" class="{{ $buttonClass }}">
             {{ $slot }}
         </button>
+
     @else
         <button type="{{$buttonType}}"
                 class="{{ $buttonClass }} disabled"
                 disabled
-            @if($tooltip)
-                title="{{ $tooltip }}"
-            @endif
+                @if($tooltip)
+                    title="{{ $tooltip }}"
+                @endif
         >{{ $slot }}</button>
 
         @if($tooltip)

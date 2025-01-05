@@ -4,15 +4,15 @@ namespace App\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Gate;
 
-class ConditionalButton extends Component
+class ConditionalLink extends Component
 {
     public string $action;
     public $model;
-    public string $buttonClass;
+    public string $linkClass;
     public ?string $tooltip = null;
-    public string $buttonType;
-
+    public string $href;
 
     /**
      * Create a new component instance.
@@ -20,24 +20,24 @@ class ConditionalButton extends Component
     public function __construct(
         string $action,
                $model,
-        string $buttonClass = 'button-primary',
+        string $linkClass = 'button-primary',
         ?string $tooltip = null,
-        string $buttonType = 'submit',
-        ?string $modelClass = null,
+        string $href = '#'
     )
     {
         $this->action = $action;
         $this->model = $model;
-        $this->buttonClass = $buttonClass;
+        $this->linkClass = $linkClass;
         $this->tooltip = $tooltip;
-        $this->buttonType = $buttonType;
+        $this->href = $href;
     }
 
-
+    /**
+     * Get the view / contents that represent the component.
+     */
     public function render(): View
     {
-
-        return view('components.conditional-button', [
+        return view('components.conditional-link', [
             'model' => $this->model,
             'tooltip' => $this->tooltip
         ]);
