@@ -95,7 +95,8 @@ button.button-edit {
     border-radius: 5px;
     font-size: 0.85em;
     position: absolute;
-    top: 130%;  // place below the button
+    z-index: 9999;
+    top: 100%;  // place below the button
     left: 50%;
     transform: translateX(-50%);
     width: 250px;
@@ -103,8 +104,11 @@ button.button-edit {
     transition: opacity 0.3s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+
+
     /* Tooltip arrow */
     &:after {
+        z-index: 9999;
         content: '';
         position: absolute;
         bottom: 100%;  /* Arrow at the top of the tooltip */
@@ -112,11 +116,11 @@ button.button-edit {
         transform: translateX(-50%);
         border-width: 5px;
         border-style: solid;
-        border-color: transparent transparent $body-text-color transparent;  // Use pastel purple for the arrow
+        border-color: transparent transparent $body-text-color transparent;
     }
 }
 
 .button-tooltip-wrapper:hover .tooltip {
     visibility: visible;
-    opacity: 1;
+    opacity: 94%;
 }

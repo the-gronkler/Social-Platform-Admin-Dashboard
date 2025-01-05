@@ -4,8 +4,26 @@
 @section('header-title', 'User List')
 
 @section('header-buttons')
-    <a href="{{ route('users.create') }}" class="button-success">New User</a>
-    <a href="{{ route('servers.index') }}" class="button-primary">View All Servers</a>
+    <x-conditional-link
+        action="create"
+        :model="App\Models\User::class"
+        cssClass="button-success"
+        href="{{ route('users.create') }}"
+        tooltip="You need admin permissions to create a user."
+    >New User</x-conditional-link>
+
+{{--    <a href="{{ route('servers.index') }}" class="button-primary">View All Servers</a>--}}
+
+    <x-conditional-link
+        action="viewAny"
+        :model="App\Models\Server::class"
+        cssClass="button-primary"
+        href="{{ route('servers.index')}}"
+        tooltip=""
+    >View All Servers</x-conditional-link>
+
+
+
 @endsection
 
 @section('content')
@@ -26,7 +44,15 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->role }}</td>
                 <td>{{ $user->servers_count }}</td>
-                <td><a href="{{ route('users.show', $user->id) }}" class="button-primary">View Details</a></td>
+                <td>
+                    <x-conditional-link
+                        action="view"
+                        :model="$user"
+                        cssClass="button-primary"
+                        href="{{ route('users.show', $user->id) }}"
+                        tooltip=""
+                    >View Details</x-conditional-link>
+                </td>
             </tr>
         @endforeach
         </tbody>

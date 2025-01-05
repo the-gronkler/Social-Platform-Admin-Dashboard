@@ -50,7 +50,12 @@
         <x-editable-table :fields="$fields" />
 
         <div class="submit-container">
-            <button type="submit" class="button-success">Create User</button>
+            <x-conditional-button
+                action="create"
+                :model="App\Models\User::class"
+                cssClass="button-success"
+                tooltip="You need admin permissions to create a user."
+            >Create User</x-conditional-button>
         </div>
     </form>
 @endsection

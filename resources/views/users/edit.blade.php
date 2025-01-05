@@ -6,9 +6,19 @@
     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="button-danger">Delete</button>
+
+        <x-conditional-button
+            action="delete"
+            :model="$user"
+            cssClass="button-danger"
+            tooltip="You need admin permissions to delete a user."
+        >Delete</x-conditional-button>
+
+
+{{--        <button type="submit" class="button-danger">Delete</button>--}}
 
         <a href="{{ route('users.show', $user->id) }}" class="button-primary">Back</a>
+
     </form>
 @endsection
 
@@ -66,7 +76,12 @@
         <x-editable-table :fields="$fields" />
 
         <div class="submit-container">
-            <button type="submit" class="button-success">Save Changes</button>
+            <x-conditional-button
+                action="update"
+                :model="$user"
+                cssClass="button-success"
+                tooltip="You need admin permissions to update a user."
+            >Save Changes</x-conditional-button>
         </div>
     </form>
 @endsection

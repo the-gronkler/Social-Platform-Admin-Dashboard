@@ -3,8 +3,24 @@
 @section('header-title', 'User Details')
 
 @section('header-buttons')
-    <a href="{{ route('users.index') }}" class="button-primary">View All Users</a>
-    <a href="{{ route('users.edit', $user->id) }}" class="button-edit">Edit</a>
+    <x-conditional-link
+        action="viewAny"
+        :model="App\Models\User::class"
+        cssClass="button-primary"
+        href="{{ route('users.index')}}"
+        tooltip=""
+    >View All Users</x-conditional-link>
+
+    <x-conditional-link
+        action="update"
+        :model="$user"
+        cssClass="button-edit"
+        href="{{ route('users.edit', $user->id) }}"
+        tooltip="Login as this user or as admin to edit"
+    >Edit</x-conditional-link>
+
+{{--    <a href="{{ route('users.index') }}" class="button-primary">View All Users</a>--}}
+{{--    <a href="{{ route('users.edit', $user->id) }}" class="button-edit">Edit</a>--}}
 @endsection
 
 @section('content')
