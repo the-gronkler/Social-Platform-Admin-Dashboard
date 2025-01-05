@@ -73,9 +73,24 @@ class UsersServerController extends Controller
             ->where('capacity', '>', $user->servers->count())
             ->get();
 
+        $servers = Server::where(function ($query) use ($user) {
+            // Filter out servers the user is already in
+            $query->whereNotExists(function ($subquery) use ($user) {
+                $subquery->selectRaw(1)
+                    ->from('users_server')
+                    ->whereColumn('users_server.server_id', 'servers.id')
+                    ->where('users_server.user_id', $user->id);
+            });
+        }) // only select non full servers
+            ->whereRaw('servers.capacity > (
+                SELECT COUNT(*) FROM users_server
+                WHERE users_server.server_id = servers.id
+            )')
+            ->get();
+
         $errors = [];
         if ($servers->count() === 0) {
-            $errors['no_servers'] = 'There are no existing servers you can add this user to ;(';
+            $errors['no_servers'] = 'There are no existing servers  to which you can add this user :(';
         }
 
 
