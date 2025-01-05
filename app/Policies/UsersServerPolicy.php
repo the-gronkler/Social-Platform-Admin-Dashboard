@@ -26,7 +26,7 @@ class UsersServerPolicy
      */
     public function create(?User $user): bool
     {
-        return true;
+        return $user != null; // Any logged in user can create the association
     }
 
     /**

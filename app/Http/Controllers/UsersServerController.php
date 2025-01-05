@@ -7,6 +7,8 @@ use App\Models\Server;
 use App\Models\UsersServer;
 use App\Http\Requests\StoreUsersServerRequest;
 use App\Http\Requests\UpdateUsersServerRequest;
+use Illuminate\Support\Facades\Gate;
+
 
 class UsersServerController extends Controller
 {
@@ -21,6 +23,10 @@ class UsersServerController extends Controller
         $users_server = UsersServer::where('server_id', $serverId)
             ->where('user_id', $userId)
             ->firstOrFail();
+
+        // Authorize view access using the policy
+        $this->authorize('view', $users_server);
+
         return view('users_server.show', compact('server', 'user', 'users_server'));
     }
 
@@ -29,12 +35,13 @@ class UsersServerController extends Controller
      */
     public function createForServer(Server $server)
     {
+
+        $this->authorize('create', UsersServer::class);
+
         // select users who are not members for the server
         $users = User::whereDoesntHave('servers',
             fn($query) => $query->where('server_id', $server->id))
-        ->get();
-
-//        dd($users);
+            ->get();
 
         // if there are no users who are not members for the server, add error message to users_server.create-for-server
         $errors = [];
@@ -56,18 +63,20 @@ class UsersServerController extends Controller
      */
     public function createForUser(User $user)
     {
+        // Manually authorize this action using the policy for creating
+        $this->authorize('create', UsersServer::class);
+
         // select servers where the user is not a member
         $servers = Server::whereDoesntHave('users',
             fn($query) => $query->where('user_id', $user->id)
         )
-        ->where('capacity', '>', $user->servers->count())
-        ->get();
+            ->where('capacity', '>', $user->servers->count())
+            ->get();
 
         $errors = [];
         if ($servers->count() === 0) {
             $errors['no_servers'] = 'There are no existing servers you can add this user to ;(';
         }
-
 
 
         return view('users_server.create-for-user', compact('user', 'servers'))
@@ -80,6 +89,8 @@ class UsersServerController extends Controller
      */
     public function store(StoreUsersServerRequest $request)
     {
+        $this->authorize('create', UsersServer::class);
+
         // check if an associeatoon with $request->server_id and $request->user_id already exists
         if (UsersServer::where('server_id', $request->server_id)
             ->where('user_id', $request->user_id)
@@ -119,6 +130,9 @@ class UsersServerController extends Controller
         $users_server = UsersServer::where('server_id', $serverId)
             ->where('user_id', $userId)
             ->firstOrFail();
+
+        $this->authorize('update', $users_server);
+
         return view('users_server.edit', compact('server', 'user', 'users_server'));
     }
 
@@ -130,6 +144,12 @@ class UsersServerController extends Controller
     {
         [$userId, $serverId] = explode('-', $users_server);
         $server = Server::findOrFail($serverId);
+
+        $userServer = UsersServer::where('server_id', $serverId)
+            ->where('user_id', $userId)
+            ->firstOrFail();
+
+        $this->authorize('update',  $userServer);
         $server->users()->updateExistingPivot($userId, [
             'is_admin' => $request->is_admin,
         ]);
@@ -143,6 +163,7 @@ class UsersServerController extends Controller
      */
     public function destroy(string $users_server)
     {
+        $this->authorize('delete', UsersServer::class);
         [$userId, $serverId] = explode('-', $users_server);
         $server = Server::findOrFail($serverId);
         $server->users()->detach($userId);

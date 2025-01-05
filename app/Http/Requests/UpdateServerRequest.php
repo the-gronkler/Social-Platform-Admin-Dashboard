@@ -6,11 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateServerRequest extends FormRequest
 {
-    public function authorize()
-    {
-        // for now
-        return true;
-    }
 
     public function rules(): array
     {
