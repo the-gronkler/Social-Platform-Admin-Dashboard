@@ -6,7 +6,14 @@
     <form action="{{ route('users_server.destroy', $user->id . '-' . $server->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="button-danger">Delete Association</button>
+{{--        <button type="submit" class="button-danger">Delete Association</button>--}}
+        <x-conditional-button
+            action="delete"
+            :model="$users_server"
+            cssClass="button-danger"
+            tooltip="You need admin permissions to delete this association."
+        >Delete Association</x-conditional-button>
+
         <a href="{{ route('servers.show', $server->id) }}" class="button-primary">Back</a>
     </form>
 @endsection
@@ -33,7 +40,13 @@
             </tr>
         </table>
         <div class="submit-container">
-            <button type="submit" class="button-success">Save Changes</button>
+{{--            <button type="submit" class="button-success">Save Changes</button>--}}
+            <x-conditional-button
+                action="update"
+                :model="$users_server"
+                cssClass="button-success"
+                tooltip="You need admin permissions to update this association."
+            >Save Changes</x-conditional-button>
         </div>
     </form>
 @endsection

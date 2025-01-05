@@ -50,7 +50,7 @@
                         :model="$user"
                         cssClass="button-primary"
                         href="{{ route('users.show', $user->id) }}"
-                        tooltip=""
+                        tooltip="Login as this user or as admin to view"
                     >View Details</x-conditional-link>
                 </td>
             </tr>

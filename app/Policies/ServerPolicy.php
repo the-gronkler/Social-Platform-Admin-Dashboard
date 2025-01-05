@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\AuthorizesServerAdmin;
 use App\Models\User;
 use App\Models\Server;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -13,7 +14,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
  */
 class ServerPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, AuthorizesServerAdmin;
 
     /**
      * Determine whether the user can update the model.
@@ -53,15 +54,5 @@ class ServerPolicy
     public function create(?User $user): bool
     {
         return $user != null; // Any logged in user can create a server
-    }
-
-    /**
-     * Return true if the user is a website-wide admin or a server admin.
-     */
-    private function isAdminOrServerAdmin(?User $user, Server $server): bool
-    {
-        return $user != null && ($user->role === 'admin' || $server->users()
-                    ->wherePivot('is_admin', true)
-                    ->where('user_id', $user->id)->exists());
     }
 }

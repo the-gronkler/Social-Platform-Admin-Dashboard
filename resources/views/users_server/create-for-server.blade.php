@@ -47,7 +47,14 @@
         @endif
 
         <div class="submit-container">
-            <button type="submit" class="button-success">Save Changes</button>
+{{--            <button type="submit" class="button-success">Save Changes</button>--}}
+
+            <x-conditional-button
+                action="create"
+                :model="App\Models\UsersServer::class"
+                cssClass="button-success"
+                tooltip="You need admin permissions to create this association."
+            >Add User to Server</x-conditional-button>
         </div>
     </form>
 @endsection

@@ -18,9 +18,6 @@
         href="{{ route('users.edit', $user->id) }}"
         tooltip="Login as this user or as admin to edit"
     >Edit</x-conditional-link>
-
-{{--    <a href="{{ route('users.index') }}" class="button-primary">View All Users</a>--}}
-{{--    <a href="{{ route('users.edit', $user->id) }}" class="button-edit">Edit</a>--}}
 @endsection
 
 @section('content')
@@ -45,13 +42,19 @@
 
     <div class="header-container">
         <h2>Servers</h2>
-        <a href="{{ route('users_server.create_for_user', $user) }}" class="button-success">Add to Server</a>
+
+        <x-conditional-link
+            action="create"
+            :model="App\Models\UsersServer::class"
+            cssClass="button-success"
+            href="{{ route('users_server.create_for_user', $user) }}"
+            tooltip=""
+        >Add to Server</x-conditional-link>
     </div>
 
     <table>
         <thead>
         <tr>
-
             <th>ID</th>
             <th>Server Name</th>
             <th>Is Admin</th>
@@ -65,9 +68,38 @@
                 <td>{{ $server->name }}</td>
                 <td>{{ $server->pivot->is_admin ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ route('servers.show', $server->id) }}" class="button-primary">View Server</a>
-                    <a href="{{ route('users_server.show', ['users_server' => $user->id . '-' . $server->id]) }}" class="button-primary">View Association</a>
-                    <a href="{{ route('users_server.edit', ['users_server' => $user->id . '-' . $server->id]) }}" class="button-edit">Edit Association</a>
+                    <x-conditional-link
+                        action="view"
+                        :model="$server"
+                        cssClass="button-primary"
+                        href="{{ route('servers.show', $server->id) }}"
+                        tooltip=""
+                    >View Server</x-conditional-link>
+
+                    @if($server->pivot)
+                        @php
+                            $usersServer = App\Models\UsersServer::where('user_id', $server->pivot->user_id)
+                            ->where('server_id', $server->id)
+                            ->first();
+                            $id = ['users_server' => $server->pivot->user_id . '-' . $server->id]
+                        @endphp
+
+                        <x-conditional-link
+                            action="view"
+                            :model="$usersServer"
+                            cssClass="button-primary"
+                            href="{{ route('users_server.show', $id) }}"
+                            tooltip=""
+                        >View Association</x-conditional-link>
+
+                        <x-conditional-link
+                            action="update"
+                            :model="$usersServer"
+                            cssClass="button-edit"
+                            href="{{ route('users_server.edit', $id) }}"
+                            tooltip=""
+                        >Edit Association</x-conditional-link>
+                    @endif
                 </td>
             </tr>
         @endforeach

@@ -56,9 +56,37 @@
                 <td>{{ $user->pivot->is_admin ? 'Yes' : 'No' }}</td>
                 <td>{{ $user->pivot->created_at->format('d.m.Y') }}</td>
                 <td>
-                    <a href="{{ route('users.show', $user->id) }}" class="button-primary">View User</a>
-                    <a href="{{ route('users_server.show', ['users_server' => $user->pivot->user_id . '-' . $server->id]) }}" class="button-primary">View Association</a>
-                    <a href="{{ route('users_server.edit', ['users_server' => $user->pivot->user_id . '-' . $server->id]) }}" class="button-edit">Edit Association</a>
+                    <x-conditional-link
+                        action="view"
+                        :model="$user"
+                        cssClass="button-primary"
+                        href="{{ route('users.show', $user->id) }}"
+                        tooltip=""
+                    >View User</x-conditional-link>
+
+                    @if($user->pivot)
+                        @php
+                            $server_id = $user->pivot->server_id;
+                            $usersServer = App\Models\UsersServer::where('user_id', $user->id)->where('server_id', $server_id)->first();
+                            $id = ['users_server' => $user->id . '-' . $server_id]
+                        @endphp
+
+                        <x-conditional-link
+                            action="view"
+                            :model="$usersServer"
+                            cssClass="button-primary"
+                            href="{{ route('users_server.show', $id) }}"
+                            tooltip=""
+                        >View Association</x-conditional-link>
+
+                        <x-conditional-link
+                            action="update"
+                            :model="$usersServer"
+                            cssClass="button-edit"
+                            href="{{ route('users_server.edit', $id) }}"
+                            tooltip=""
+                        >Edit Association</x-conditional-link>
+                    @endif
                 </td>
             </tr>
         @endforeach

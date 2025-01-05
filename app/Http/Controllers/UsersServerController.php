@@ -18,7 +18,10 @@ class UsersServerController extends Controller
         [$userId, $serverId] = explode('-', $users_server);
         $server = Server::findOrFail($serverId);
         $user = $server->users()->wherePivot('user_id', $userId)->firstOrFail();
-        return view('users_server.show', compact('server', 'user'));
+        $users_server = UsersServer::where('server_id', $serverId)
+            ->where('user_id', $userId)
+            ->firstOrFail();
+        return view('users_server.show', compact('server', 'user', 'users_server'));
     }
 
     /**
@@ -60,9 +63,15 @@ class UsersServerController extends Controller
         ->where('capacity', '>', $user->servers->count())
         ->get();
 
+        $errors = [];
+        if ($servers->count() === 0) {
+            $errors['no_servers'] = 'There are no existing servers you can add this user to ;(';
+        }
 
 
-        return view('users_server.create-for-user', compact('user', 'servers'));
+
+        return view('users_server.create-for-user', compact('user', 'servers'))
+            ->withErrors($errors);
     }
 
 
@@ -78,6 +87,14 @@ class UsersServerController extends Controller
         ) {
             return redirect()->back()->withErrors([
                 'server_id' => 'This user is already a member of this server.',
+            ]);
+        }
+
+        // check that a space is available in the server
+        if (Server::findOrFail($request->server_id)->users->count()
+            >= Server::findOrFail($request->server_id)->capacity) {
+            return redirect()->back()->withErrors([
+                'server_id' => 'The server is full. Cant add members',
             ]);
         }
 
@@ -99,7 +116,10 @@ class UsersServerController extends Controller
         [$userId, $serverId] = explode('-', $users_server);
         $server = Server::findOrFail($serverId);
         $user = $server->users()->wherePivot('user_id', $userId)->firstOrFail();
-        return view('users_server.edit', compact('server', 'user'));
+        $users_server = UsersServer::where('server_id', $serverId)
+            ->where('user_id', $userId)
+            ->firstOrFail();
+        return view('users_server.edit', compact('server', 'user', 'users_server'));
     }
 
 

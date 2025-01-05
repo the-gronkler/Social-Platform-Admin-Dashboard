@@ -22,7 +22,8 @@ class UserPolicy
      */
     public function view(?User $user, User $targetUser): bool
     {
-        return true; // Any user can view another user's details
+        return $user != null
+            && ($user->id === $targetUser->id || $user->role === 'admin'); // Only admins can view other users
     }
 
     /**

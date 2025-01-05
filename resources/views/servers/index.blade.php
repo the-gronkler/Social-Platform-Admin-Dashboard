@@ -13,7 +13,13 @@
         tooltip="You need to be logged in to create a server."
     >New Server</x-conditional-link>
 
-    <a href="{{ route('users.index') }}" class="button-primary">View All Users</a>
+    <x-conditional-link
+        action="viewAny"
+        :model="App\Models\User::class"
+        cssClass="button-primary"
+        href="{{ route('users.index') }}"
+        tooltip=""
+    >View All Users</x-conditional-link>
 @endsection
 
 @section('content')
@@ -32,7 +38,15 @@
                 <td>{{ $server->id }}</td>
                 <td>{{ $server->name }}</td>
                 <td>{{ $server->users_count }} / {{ $server->capacity }}</td>
-                <td><a href="{{ route('servers.show', $server->id) }}" class="button-primary">View Details</a></td>
+                <td>
+                    <x-conditional-link
+                        action="view"
+                        :model="$server"
+                        cssClass="button-primary"
+                        href="{{ route('servers.show', $server) }}"
+                        tooltip=""
+                    >View Details</x-conditional-link>
+                </td>
             </tr>
         @endforeach
         </tbody>

@@ -387,6 +387,7 @@ select:focus {
   color: #FF6F61;
   font-size: 0.9em;
   margin-top: 5px;
+  width: 80%;
 }
 
 input:invalid,
