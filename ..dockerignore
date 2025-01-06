@@ -4,3 +4,7 @@ npm-debug.log
 .git
 tests
 vendor
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
