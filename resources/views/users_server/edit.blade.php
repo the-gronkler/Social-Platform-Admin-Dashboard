@@ -22,6 +22,9 @@
     <form action="{{ route('users_server.update', $user->id . '-' . $server->id ) }}" method="POST">
         @csrf
         @method('PUT')
+
+        <x-error-summary />
+
         <table>
             <tr>
                 <th>Current User</th>
@@ -40,7 +43,6 @@
             </tr>
         </table>
         <div class="submit-container">
-{{--            <button type="submit" class="button-success">Save Changes</button>--}}
             <x-conditional-button
                 action="update"
                 :model="$users_server"

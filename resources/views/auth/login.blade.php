@@ -10,6 +10,7 @@
     <div class="header-container">
         <form method="POST" action="{{ route('login') }}" class="form-container">
             @csrf
+            <x-error-summary />
 
             <div class="form-item">
                 <label for="email">Email</label>
@@ -31,7 +32,6 @@
                 <label for="remember">Remember Me</label>
                 <input type="checkbox" name="remember" id="remember">
             </div>
-
 
             <div class="submit-container">
                 <button type="submit" class="button-primary">Login</button>

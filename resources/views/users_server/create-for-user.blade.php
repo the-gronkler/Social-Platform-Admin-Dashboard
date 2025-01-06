@@ -11,6 +11,9 @@
     <form action="{{ route('users_server.store') }}" method="POST">
         @csrf
         <input type="hidden" name="user_id" value="{{ $user->id }}">
+
+        <x-error-summary />
+
         <table>
             <tr>
                 <th>User</th>
@@ -36,29 +39,13 @@
                 </td>
             </tr>
         </table>
-
-        <div style="width: 80%;">
-        @if ($errors->any())
-            <div class="error-summary">
-                <ul class="error-summary">
-                    @foreach ($errors->all() as $error)
-                        <li class="error-summary">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        </div>
-
-
         <div class="submit-container">
-{{--            <button type="submit" class="button-success">Save Changes</button>--}}
             <x-conditional-button
                 action="create"
                 :model="App\Models\UsersServer::class"
                 cssClass="button-success"
                 tooltip="You need admin permissions to create this association."
             >Add User to Server</x-conditional-button>
-
         </div>
     </form>
 @endsection

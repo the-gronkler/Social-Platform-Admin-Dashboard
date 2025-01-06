@@ -25,6 +25,8 @@
         @csrf
         @method('PUT')
 
+        <x-error-summary />
+
         @php
             // Calculate the minimum value for capacity
             $minCapacity = max(1, $server->users()->count());
@@ -60,15 +62,12 @@
         <x-editable-table :fields="$fields" />
 
         <div class="submit-container">
-
             <x-conditional-button
                 action="update"
                 :model="$server"
                 cssClass="button-success"
                 tooltip="You need admin permissions to edit this server."
             >Save Changes</x-conditional-button>
-
-{{--            <button type="submit" class="button-success">Save Changes</button>--}}
         </div>
     </form>
 @endsection

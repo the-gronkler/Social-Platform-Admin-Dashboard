@@ -10,6 +10,9 @@
     <form action="{{ route('users_server.store') }}" method="POST">
         @csrf
         <input type="hidden" name="server_id" value="{{ $server->id }}">
+
+        <x-error-summary />
+
         <table>
             <tr>
                 <th>Server</th>
@@ -36,19 +39,7 @@
             </tr>
         </table>
 
-        @if ($errors->any())
-            <div class="error-summary">
-                <ul class="error-summary">
-                    @foreach ($errors->all() as $error)
-                        <li class="error-summary">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="submit-container">
-{{--            <button type="submit" class="button-success">Save Changes</button>--}}
-
             <x-conditional-button
                 action="create"
                 :model="App\Models\UsersServer::class"

@@ -10,6 +10,8 @@
     <form method="POST" action="{{ route('register') }}" class="form-container">
         @csrf
 
+        <x-error-summary />
+
         <div class="form-item">
             <label for="name">Name</label>
             <input class="input" id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>

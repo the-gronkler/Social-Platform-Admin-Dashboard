@@ -10,6 +10,8 @@
     <form action="{{ route('servers.store') }}" method="POST">
         @csrf
 
+        <x-error-summary />
+
         @php
             $minCapacity = 1;
 
@@ -43,5 +45,6 @@
                 tooltip="You to log in to create a server."
             >Create Server</x-conditional-button>
         </div>
+
     </form>
 @endsection

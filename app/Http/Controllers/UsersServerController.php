@@ -154,7 +154,7 @@ class UsersServerController extends Controller
             ]);
         }
 
-        return redirect()->route('servers.show', $server->id);
+        return redirect()->route('users_server.show', $users_server);
     }
 
     public function destroy(string $users_server)

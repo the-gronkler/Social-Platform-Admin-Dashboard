@@ -27,6 +27,8 @@
         @csrf
         @method('PUT')
 
+        <x-error-summary />
+
         @php
             $fields = [
                 [
@@ -68,7 +70,7 @@
                     'type' => 'select',
                     'options' => ['user' => 'User', 'admin' => 'Admin'],
                     'attributes' => 'required',
-                    'value' => old('role', 'user')
+                    'value' => old('role', $user->role)
                 ],
             ];
         @endphp

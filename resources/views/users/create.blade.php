@@ -9,6 +9,7 @@
 @section('content')
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
+        <x-error-summary />
 
         @php
             $fields = [
