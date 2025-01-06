@@ -32,7 +32,7 @@
             $fields = [
                 [
                     'label' => 'ID',
-                    'name' => 'id', // Explicitly provide name, id, and type
+                    'name' => 'id',
                     'id' => 'id',
                     'type' => 'text',
                     'attributes' => 'readonly',

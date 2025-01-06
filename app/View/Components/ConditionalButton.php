@@ -26,6 +26,9 @@ class ConditionalButton extends Component
         ?string $modelClass = null,
     )
     {
+        if ($tooltip === null || $tooltip === '')
+            $tooltip = "You don't have permissions to perform this action";
+
         $this->action = $action;
         $this->model = $model;
         $this->cssClass = $cssClass;

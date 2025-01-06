@@ -11,8 +11,7 @@
         @csrf
 
         @php
-            // Calculate the minimum value for capacity
-            $minCapacity = 1; // Default to 1 for a new server, or adjust based on specific requirements
+            $minCapacity = 1;
 
             $fields = [
                 [

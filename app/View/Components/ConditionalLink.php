@@ -25,6 +25,9 @@ class ConditionalLink extends Component
         string $href = '#'
     )
     {
+        if ($tooltip === null || $tooltip === '')
+            $tooltip = "You don't have permissions to perform this action";
+
         $this->action = $action;
         $this->model = $model;
         $this->cssClass = $cssClass;

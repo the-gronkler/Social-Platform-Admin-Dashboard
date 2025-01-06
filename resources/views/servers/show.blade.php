@@ -1,4 +1,4 @@
-<!-- resources/views/servers/show.blade.php -->
+
 @extends('layouts.app')
 
 @section('title', 'Server Details')

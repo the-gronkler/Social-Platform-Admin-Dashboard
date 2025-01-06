@@ -41,9 +41,6 @@ Route::resource('users_server', UsersServerController::class)
     ->except(['index', 'create']);
 
 
-
-
-
 //Route::controller(UsersServerController::class)->group(function () {
 //    Route::get('users_server/create-for-server/{server}', 'createForServer')->name('users_server.create-for-server');
 //    Route::get('users_server/create-for-user/{user}', 'createForUser')->name('users_server.create_for_user');
