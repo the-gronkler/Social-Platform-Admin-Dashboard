@@ -33,6 +33,6 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect('/servers'); // Redirect to servers index on success
+        return redirect('/servers');
     }
 }

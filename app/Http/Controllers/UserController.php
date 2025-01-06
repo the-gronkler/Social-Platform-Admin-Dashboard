@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    /**
-     * Display a listing of the users.
-     */
     public function index()
     {
         $this->authorize('viewAny', User::class);
@@ -22,18 +19,12 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new user.
-     */
     public function create()
     {
         $this->authorize('create', User::class);
         return view('users.create');
     }
 
-    /**
-     * Store a newly created user in storage.
-     */
     public function store(StoreUserRequest $request)
     {
         $this->authorize('create', User::class);
@@ -47,9 +38,6 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 
-    /**
-     * Display the specified user.
-     */
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -60,18 +48,12 @@ class UserController extends Controller
         return view('users.show', compact('user', 'servers'));
     }
 
-    /**
-     * Show the form for editing the specified user.
-     */
     public function edit(User $user)
     {
         $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified user in storage.
-     */
     public function update(UpdateUserRequest $request, User $user)
     {
         $this->authorize('update', $user);
@@ -82,8 +64,7 @@ class UserController extends Controller
             'role' => $request->role
         ];
 
-        if($request->password)
-        {
+        if ($request->password) {
             $userData['password'] = Hash::make($request->password);
         }
 
@@ -94,9 +75,6 @@ class UserController extends Controller
     }
 
 
-    /**
-     * Remove the specified user from storage.
-     */
     public function destroy(User $user)
     {
         $this->authorize('delete', $user);
