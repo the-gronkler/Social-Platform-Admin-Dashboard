@@ -22,7 +22,8 @@ class UsersServer extends Pivot
 
     protected static function booted()
     {
-        // if the user being deleted is the last admin, the earliest joined user will be made an admin
+        // if the user being deleted is the last admin,
+        // the earliest joined user will be made an admin
         static::deleting(function (UsersServer $usersServer) {
             $server = Server::find($usersServer->server_id);
             if (!$server || $server->users()->isEmpty()) {
@@ -37,7 +38,8 @@ class UsersServer extends Pivot
                 $earliestJoinedUser = $server->users()->orderBy('users_server.created_at')->first();
 
                 \DB::transaction(function () use ($server, $earliestJoinedUser) {
-                    $server->users()->updateExistingPivot($earliestJoinedUser->id, ['is_admin' => true]);
+                    $server->users()
+                        ->updateExistingPivot($earliestJoinedUser->id, ['is_admin' => true]);
                 });
             }
         });
@@ -52,7 +54,7 @@ class UsersServer extends Pivot
                 $usersServer->is_admin = true;
         });
 
-        // if the update is removing the last admin's priveleges, the earliest joined user will be made an admin
+        // if the update is removing the last admin's priveleges the earliest joined user will be made an admin
         static::updated(function (UsersServer $usersServer) {
             $server = Server::find($usersServer->server_id);
             if (!$server)
