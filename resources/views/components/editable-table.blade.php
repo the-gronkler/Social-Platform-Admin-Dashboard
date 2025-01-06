@@ -3,14 +3,29 @@
         <tr>
             <th>{{ $field['label'] }}</th>
             <td>
-                <input
-                    class = "table-input"
-                    type="{{ $field['type'] }}"
-                    id="{{ $field['id'] }}"
-                    name="{{ $field['name'] }}"
-                    {!! $field['attributes'] !!}
-                    value="{{ $field['value'] }}"
-                >
+                @if($field['type'] === 'select')
+                    <select
+                        class="table-input"
+                        id="{{ $field['id'] }}"
+                        name="{{ $field['name'] }}"
+                        {!! $field['attributes'] !!}
+                    >
+                        @foreach($field['options'] as $value => $label)
+                            <option value="{{ $value }}" {{ $field['value'] == $value ? 'selected' : '' }}>
+                                {{ $label }}
+                            </option>
+                        @endforeach
+                    </select>
+                @else
+                    <input
+                        class = "table-input"
+                        type="{{ $field['type'] }}"
+                        id="{{ $field['id'] }}"
+                        name="{{ $field['name'] }}"
+                        {!! $field['attributes'] !!}
+                        value="{{ $field['value'] }}"
+                    >
+                @endif
 
                 @error($field['name'])
                 <span class="error-message">{{ $message }}</span>

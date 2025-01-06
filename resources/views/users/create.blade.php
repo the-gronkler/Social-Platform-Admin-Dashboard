@@ -43,7 +43,7 @@
                     'type' => 'select',
                     'options' => ['user' => 'User', 'admin' => 'Admin'],
                     'attributes' => 'required',
-                     'value' => old('role', 'user') // Default to 'user'
+                    'value' => old('role', 'user')
                 ],
             ];
         @endphp

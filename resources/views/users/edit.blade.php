@@ -62,14 +62,14 @@
                     'value' => null
                 ],
                 [
-                     'label' => 'Role',
-                     'name' => 'role',
-                     'id' => 'role',
-                     'type' => 'select',
-                     'options' => ['user' => 'User', 'admin' => 'Admin'],
-                     'attributes' => 'required',
-                     'value' => old('role', $user->role)
-                 ],
+                    'label' => 'Role',
+                    'name' => 'role',
+                    'id' => 'role',
+                    'type' => 'select',
+                    'options' => ['user' => 'User', 'admin' => 'Admin'],
+                    'attributes' => 'required',
+                    'value' => old('role', 'user')
+                ],
             ];
         @endphp
 
