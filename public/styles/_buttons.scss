@@ -1,12 +1,10 @@
-// _buttons.scss
-@use 'colors' as *; // Imports color variables from colors.scss
-
+@use 'colors' as *;
 
 button {
-  all: unset; // Resets all styles
-  font-size: 1em;  // Match font size
-  text-decoration: none;  // Remove underline by default
-  cursor: pointer;  // Make the button act like a button (with a pointer cursor)
+  all: unset;
+  font-size: 1em;
+  text-decoration: none;
+  cursor: pointer;
   vertical-align: middle;  // Align the button vertically with other inline elements (like anchor tags)
 
   // vertically allign buttons to anchor tags (they are normally higher for some reason)
@@ -33,7 +31,7 @@ button {
 
   &:disabled {
     cursor: not-allowed;
-    background-color: $hover-color;  // Apply hover color when disabled
+    background-color: $hover-color;
   }
 
 }
@@ -96,7 +94,7 @@ button.button-edit {
     font-size: 0.85em;
     position: absolute;
     z-index: 9999;
-    top: 100%;  // place below the button
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     width: 250px;
@@ -106,12 +104,12 @@ button.button-edit {
 
 
 
-    /* Tooltip arrow */
+    // Tooltip arrow
     &:after {
         z-index: 9999;
         content: '';
         position: absolute;
-        bottom: 100%;  /* Arrow at the top of the tooltip */
+        bottom: 100%;  // Arrow at the top of the tooltip
         left: 50%;
         transform: translateX(-50%);
         border-width: 5px;

@@ -1,4 +1,3 @@
-// _responsive.scss
 @media screen and (max-width: 768px) {
   table {
     width: 100%;
@@ -17,9 +16,7 @@
 
   .header-container a {
     width: 100%;
-    /* Makes buttons take full width on small screens */
     margin-right: 0;
-    /* Removes extra space between buttons */
   }
 
   .button-primary {

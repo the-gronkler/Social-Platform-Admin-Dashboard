@@ -1,5 +1,3 @@
-// _tables.scss
-
 @use 'colors' as *;
 
 table {
@@ -11,15 +9,15 @@ table {
   border-radius: 12px;
   overflow: hidden;
   table-layout: auto;
-    min-width: fit-content;
-    min-height: fit-content;
+  min-width: fit-content;
+  min-height: fit-content;
 }
 
 th, td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid $table-border-color;
-  vertical-align: middle; // Aligns text vertically with buttons
+  vertical-align: middle;
 }
 
 th {
@@ -46,15 +44,14 @@ tr:hover td {
   background-color: $table-row-hover-color;
 }
 
-// Resize buttons so they dont stretch the table too much
 td .button-primary,
 td .button-danger,
 td .button-success,
 td .button-edit
 {
-  padding: 6px 12px;  // Standard button padding
-  font-size: 0.85em;  // Adjust font size for consistency
+  padding: 6px 12px;
+  font-size: 0.85em;
   display: inline-block;
-  margin: 0;  // Removes default margin around the button
+  margin: 0;
 }
 

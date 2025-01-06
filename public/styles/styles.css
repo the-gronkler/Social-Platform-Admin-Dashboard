@@ -15,11 +15,10 @@ h1 {
   letter-spacing: 0.05em;
 }
 
-/* Make section titles stand out more */
 h1, h2, h3 {
-  font-size: 2.5em; /* Larger font size for a more prominent look */
-  color: #555555; /* Darker color for contrast */
-  letter-spacing: 0.1em; /* Slightly wider letter spacing for a gothic feel */
+  font-size: 2.5em;
+  color: #555555;
+  letter-spacing: 0.1em;
   margin-bottom: 20px;
   font-family: "Impact", sans-serif;
 }
@@ -38,19 +37,19 @@ h1.website-title {
   width: 80%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* Space between title and buttons */
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Allows wrapping of items if the screen size is small */
+  flex-wrap: wrap;
 }
 
 .header-container h1 {
   margin: 0;
-  flex-grow: 1; /* Ensures the heading takes up remaining space */
-  text-align: left; /* Align the heading to the left */
+  flex-grow: 1;
+  text-align: left;
 }
 
 .header-container a, .header-container button {
-  margin: 10px 0; /* Adds margin to buttons */
+  margin: 10px 0;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 8px;
@@ -60,7 +59,6 @@ h1.website-title {
   transition: background-color 0.3s ease;
 }
 
-/* Spacing between buttons */
 .header-container a:not(:last-child), .header-container button:not(:last-child) {
   margin-right: 15px;
 }
@@ -271,13 +269,12 @@ button.button-edit:disabled {
   opacity: 0;
   transition: opacity 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Tooltip arrow */
 }
 .tooltip:after {
   z-index: 9999;
   content: "";
   position: absolute;
-  bottom: 100%; /* Arrow at the top of the tooltip */
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   border-width: 5px;
@@ -304,20 +301,20 @@ button.button-edit:disabled {
 }
 
 .checkbox-container {
-  display: flex; /* Use flexbox to align label and checkbox */
-  align-items: center; /* Vertically align items */
-  justify-content: space-between; /* Keep label and checkbox on different sides */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .checkbox-container label {
-  white-space: nowrap; /* prevent wrapping label */
-  flex: 1; /* let label take up available space */
-  padding-right: 10px; /* Add some space to the right of the label */
+  white-space: nowrap;
+  flex: 1;
+  padding-right: 10px;
   text-align: left;
 }
 
 .checkbox-container input[type=checkbox] {
-  flex: 0; /* Let checkbox take up only the space it needs */
+  flex: 0;
 }
 
 form.form-container {
@@ -338,9 +335,9 @@ form.form-container {
   width: 80%;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-end; /* Aligns buttons to the right */
-  align-items: center; /* Ensures items are vertically centered */
-  flex-wrap: wrap; /* Allows wrapping of items if the screen size is small */
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .radio-container {
@@ -415,15 +412,12 @@ select:invalid + .error-message {
   }
   .header-container a {
     width: 100%;
-    /* Makes buttons take full width on small screens */
     margin-right: 0;
-    /* Removes extra space between buttons */
   }
   .button-primary {
     margin-bottom: 10px;
   }
 }
-/* Pagination Links */
 .pagination-links {
   width: 80%;
   margin: 20px auto;
